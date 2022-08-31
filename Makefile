@@ -9,7 +9,9 @@ HEADER			= so_long.h
 HEADER_PATH		= $(addprefix $(HEADER_DIR), $(HEADER))
 
 SRC_DIR			= ./src/
-SRC				= so_long.c
+SRC				= 	so_long.c \
+					input_validation_utils.c \
+					map_validation_utils.c
 SRC_PATH		= $(addprefix $(SRC_DIR), $(SRC))
 
 OBJ				= $(SRC_PATH:.c=.o)
@@ -27,7 +29,7 @@ $(NAME): $(SRC_PATH)
 	@ $(MAKE) -C $(LIBFT_DIR)
 	@ cp $(LIBFT) $(NAME)
 	@ mkdir -p $(BIN)
-	@ $(CC) $(SRC_PATH) -I $(HEADER_DIR) -I $(HEADER_LIBFT) -L $(LIBFT_DIR) -lft $(MLXFLAGS) -o $(NAME)
+	@ $(CC) $(CFLAGS) $(SRC_PATH) -I $(HEADER_DIR) -I $(HEADER_LIBFT) -L $(LIBFT_DIR) -lft $(MLXFLAGS) -o $(NAME)
 	@ mv $(NAME) $(BIN)
 	@ echo "$(NAME) compiled successfully!"
 
