@@ -59,7 +59,8 @@ SRC =	ft_isalpha.c \
 		ft_put_x.c \
 		ft_put_p.c \
 		ft_put_s.c \
-		ft_put_di.c
+		ft_put_di.c \
+		get_next_line.c
 SOURCES := $(addprefix $(SRC_PATH), $(SRC))
 
 OBJ_PATH = ./obj/
