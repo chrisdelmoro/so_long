@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/08/29 17:27:22 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/08/30 20:48:52 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 /* Libft */
 # include <libft.h>
 # include <ft_printf.h>
+# include <get_next_line.h>
 
 /* open() function includes */
 # include <sys/types.h>
@@ -32,21 +33,13 @@
 /* read() and close() include */
 # include <unistd.h>
 
-
-
 /* Constants */
 
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 600
-# define RED_PIXEL 0x00FF0000
-# define GREEN_PIXEL 0x0000FF00
-# define BLUE_PIXEL 0x000000FF
-
-
+# define VALID_MAP_CHARS	"EPC10TJ"
 
 /* Structs */
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*mlx_img;
 	char	*addr;
@@ -55,11 +48,21 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
-typedef struct	s_window
+typedef struct s_window
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
 }				t_window;
+
+typedef struct s_map
+{
+	char	**lines;
+}				t_map;
+
+/* Prototypes */
+
+int		input_validation(int argc, char *map_path);
+void	map_validation(char *map_path);
 
 #endif
