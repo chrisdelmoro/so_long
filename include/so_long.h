@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/02 11:55:28 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/02 20:10:02 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 
 /* Constants */
 
-# define VALID_MAP_CHARS	"EPC10TJ"
+# define VALID_MAP_CHARS	"EPC10"
 
 /* Structs */
 
@@ -57,6 +57,12 @@ typedef struct s_window
 
 typedef struct s_map
 {
+	int		rectangle;
+	int		valid_chars;
+	int		walled;
+	int		entrances;
+	int		players;
+	int		exits;
 	char	**lines;
 }				t_map;
 
@@ -69,6 +75,6 @@ int		input_validation(int argc, char *map_path);
 void	map_validation(char *map_path);
 
 /* close_utils.c */
-void	flush(char ***lines);
+void	flush_map(t_map *map);
 
 #endif
