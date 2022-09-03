@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:04:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/02 20:27:51 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:55:17 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ static size_t	count_lines(int fd)
 	i = 0;
 	while (read_return > 0)
 	{
-		if (c == '\n' || c == '\0')
+		if (c == '\n')
 			i++;
 		read_return = read(fd, &c, 1);
 	}
+	i++;
 	//ft_printf("Number of lines: %d\n", i);
 	return (i);
 }
@@ -62,7 +63,7 @@ static int	is_map_rectangle(t_map *map, int line_count)
 	if (line_count < 3)
 	{
 		ft_printf("Map need to be at least 3 lines deep.\n");
-		flush_map(map);
+		//flush_map(map);
 		return (0);
 	}
 	while (map->lines[i])
@@ -70,9 +71,33 @@ static int	is_map_rectangle(t_map *map, int line_count)
 		if (ft_strlen(map->lines[0]) != ft_strlen(map->lines[i]))
 		{
 			ft_printf("Map is not a rectangle!\n");
-			flush_map(map);
+			//flush_map(map);
 			return (0);
 		}
+		i++;
+	}
+	return (1);
+}
+
+static int	are_map_chars_valid(t_map *map)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (map->lines[i])
+	{
+		while (map->lines[i][j])
+		{
+			if (!ft_strchr(VALID_MAP_CHARS, map->lines[i][j]))
+			{
+				ft_printf("Invalid characters present on map file!\n");
+				return (0);
+			}
+			j++;
+		}
+		j = 0;
 		i++;
 	}
 	return (1);
@@ -96,6 +121,7 @@ void	map_validation(char *map_path)
 		ft_printf("Error! Failed to load map file!\n");
 	feed_lines(&map, fd);
 	map.rectangle = is_map_rectangle(&map, line_count);
+	map.valid_chars = are_map_chars_valid(&map);
 	/* i = 0;
 	while (map.lines[i])
 	{
