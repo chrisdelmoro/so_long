@@ -6,39 +6,37 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:04:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/03 18:55:17 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/03 19:45:13 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-static size_t	count_lines(int fd)
+static void	count_lines(t_map *map)
 {
 	int		read_return;
 	char	c;
-	size_t	i;
 
-	read_return = read(fd, &c, 1);
-	i = 0;
+	map->line_count = 0;
+	read_return = read(map->fd, &c, 1);
 	while (read_return > 0)
 	{
 		if (c == '\n')
-			i++;
-		read_return = read(fd, &c, 1);
+			map->line_count++;
+		read_return = read(map->fd, &c, 1);
 	}
-	i++;
-	//ft_printf("Number of lines: %d\n", i);
-	return (i);
+	map->line_count++;
+	ft_printf("Number of lines: %d\n", map->line_count);
 }
 
-static void	feed_lines(t_map *map, int fd)
+static void	feed_lines(t_map *map)
 {
 	char	*gnl_line;
 	char	*treated_line;
 	size_t	i;
 
 	i = 0;
-	gnl_line = get_next_line(fd);
+	gnl_line = get_next_line(map->fd);
 	while (gnl_line)
 	{
 		if (ft_strrchr(gnl_line, '\n'))
@@ -49,37 +47,35 @@ static void	feed_lines(t_map *map, int fd)
 		}
 		else
 			map->lines[i] = gnl_line;
-		gnl_line = get_next_line(fd);
+		gnl_line = get_next_line(map->fd);
 		i++;
 	}
 	ft_freethis(&gnl_line, NULL);
 }
 
-static int	is_map_rectangle(t_map *map, int line_count)
+static void	is_map_rectangle(t_map *map)
 {
 	size_t	i;
 
 	i = 1;
-	if (line_count < 3)
+	if (map->line_count < 3)
 	{
 		ft_printf("Map need to be at least 3 lines deep.\n");
-		//flush_map(map);
-		return (0);
+		map->rectangle = 0;
 	}
 	while (map->lines[i])
 	{
 		if (ft_strlen(map->lines[0]) != ft_strlen(map->lines[i]))
 		{
 			ft_printf("Map is not a rectangle!\n");
-			//flush_map(map);
-			return (0);
+			map->rectangle = 0;
 		}
 		i++;
 	}
-	return (1);
+	map->rectangle = 1;
 }
 
-static int	are_map_chars_valid(t_map *map)
+static void	are_map_chars_valid(t_map *map)
 {
 	size_t	i;
 	size_t	j;
@@ -93,35 +89,34 @@ static int	are_map_chars_valid(t_map *map)
 			if (!ft_strchr(VALID_MAP_CHARS, map->lines[i][j]))
 			{
 				ft_printf("Invalid characters present on map file!\n");
-				return (0);
+				map->valid_chars = 0;
+				return ;
 			}
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-	return (1);
+	map->valid_chars = 1;
 }
 
 void	map_validation(char *map_path)
 {
-	int		fd;
-	int		line_count;
 	t_map	map;
-	//size_t	i;
+	/* size_t	i; */
 
-	fd = open(map_path, O_RDONLY);
-	if (fd < 0)
+	map.fd = open(map_path, O_RDONLY);
+	if (map.fd < 0)
 		ft_printf("Error! Failed to load map file!\n");
-	line_count = count_lines(fd);
-	map.lines = (char **) ft_calloc(line_count + 1, sizeof(char *));
-	close(fd);
-	fd = open(map_path, O_RDONLY);
-	if (fd < 0)
+	count_lines(&map);
+	map.lines = (char **) ft_calloc(map.line_count + 1, sizeof(char *));
+	close(map.fd);
+	map.fd = open(map_path, O_RDONLY);
+	if (map.fd < 0)
 		ft_printf("Error! Failed to load map file!\n");
-	feed_lines(&map, fd);
-	map.rectangle = is_map_rectangle(&map, line_count);
-	map.valid_chars = are_map_chars_valid(&map);
+	feed_lines(&map);
+	is_map_rectangle(&map);
+	are_map_chars_valid(&map);
 	/* i = 0;
 	while (map.lines[i])
 	{
@@ -130,5 +125,5 @@ void	map_validation(char *map_path)
 	} */
 	if (map.lines)
 		flush_map(&map);
-	close(fd);
+	close(map.fd);
 }

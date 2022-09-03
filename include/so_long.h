@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/02 20:10:02 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/03 19:30:04 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,14 @@ typedef struct s_window
 
 typedef struct s_map
 {
+	int		fd;
 	int		rectangle;
 	int		valid_chars;
 	int		walled;
 	int		entrances;
 	int		players;
 	int		exits;
+	int		line_count;
 	char	**lines;
 }				t_map;
 
