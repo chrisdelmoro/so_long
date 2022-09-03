@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:04:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/03 20:49:59 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/03 20:55:27 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,17 @@
 
 static void	count_lines(t_map *map)
 {
+	char	*gnl_line;
+	
 	map->line_count = 0;
-	while (get_next_line(map->fd))
+	gnl_line = get_next_line(map->fd);
+	while (gnl_line)
+	{
 		map->line_count++;
+		ft_freethis(&gnl_line, NULL);
+		gnl_line = get_next_line(map->fd);
+	}
+	ft_freethis(&gnl_line, NULL);
 	//ft_printf("Number of lines: %d\n", map->line_count); 
 }
 
