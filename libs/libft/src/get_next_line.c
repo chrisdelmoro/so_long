@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 00:08:30 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/08/30 20:29:15 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/03 20:44:58 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ static int	feed_accumulator(char **accumulator, int fd)
 	buffer[read_count] = '\0';
 	tmp = *accumulator;
 	*accumulator = ft_strjoin(tmp, buffer);
-	if (ft_strlen(tmp))
-		freethis(&tmp, NULL);
+	freethis(&tmp, NULL);
 	freethis(&buffer, NULL);
 	return (read_count);
 }
@@ -64,7 +63,10 @@ static int	close_gnl(char **accumulator, char **line, int read_count)
 	{
 		close_line_n(&*accumulator, &*line, read_count);
 		if (ft_strlen(*accumulator) == 0)
-			freethis(&*accumulator, "");
+		{
+			freethis(&*accumulator, NULL);
+			*accumulator = ft_strdup("");
+		}
 	}
 	else
 	{
@@ -78,20 +80,25 @@ static int	close_gnl(char **accumulator, char **line, int read_count)
 
 char	*get_next_line(int fd)
 {
-	static char	*accumulator = "";
+	static char	*accumulator[OPEN_MAX];
 	char		*line;
 	int			read_count;
 
-	if (accumulator == NULL || fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	if (!accumulator[fd])
+		accumulator[fd] = ft_strdup("");
 	read_count = BUFFER_SIZE;
-	while (read_count > 0 && !ft_strchr(accumulator, '\n'))
+	while (read_count > 0 && !ft_strchr(accumulator[fd], '\n'))
 	{
-		read_count = feed_accumulator(&accumulator, fd);
-		if (read_count < 0)
+		read_count = feed_accumulator(&accumulator[fd], fd);
+		if (read_count <= 0 && !ft_strlen(accumulator[fd]))
+		{
+			freethis(&accumulator[fd], NULL);
 			return (NULL);
+		}
 	}
-	if (!close_gnl(&accumulator, &line, read_count))
+	if (!close_gnl(&accumulator[fd], &line, read_count))
 		return (NULL);
 	return (line);
 }

@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:04:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/03 19:45:13 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/03 20:49:59 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,10 @@
 
 static void	count_lines(t_map *map)
 {
-	int		read_return;
-	char	c;
-
 	map->line_count = 0;
-	read_return = read(map->fd, &c, 1);
-	while (read_return > 0)
-	{
-		if (c == '\n')
-			map->line_count++;
-		read_return = read(map->fd, &c, 1);
-	}
-	map->line_count++;
-	ft_printf("Number of lines: %d\n", map->line_count);
+	while (get_next_line(map->fd))
+		map->line_count++;
+	//ft_printf("Number of lines: %d\n", map->line_count); 
 }
 
 static void	feed_lines(t_map *map)
