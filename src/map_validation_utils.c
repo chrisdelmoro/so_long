@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:04:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/03 21:51:42 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:59:53 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,60 @@ static void	are_map_chars_valid(t_map *map)
 	map->valid_chars = 1;
 }
 
+static void check_wall_vert(t_map *map)
+{
+	size_t	i;
+
+	i = 0;
+	while (map->lines[i])
+	{
+		if (map->lines[i][0] != '1' || map->lines[i][ft_strlen(map->lines[i]) - 1] != '1')
+		{
+			map->walled = 0;
+			ft_printf("Map is not walled!\n");
+			return ;
+		}
+		i++;
+	}
+	map->walled = 1;
+}
+
+static void	check_wall_hor(t_map *map)
+{
+	size_t	j;
+
+	j = 0;
+	while (map->lines[0][j])
+	{
+		if (map->lines[0][j] != '1')
+		{
+			map->walled = 0;
+			ft_printf("Map is not walled!\n");
+			return ;
+		}
+		j++;
+	}
+	j = 0;
+	while (map->lines[(map->line_count) - 1][j])
+	{
+		if (map->lines[(map->line_count) - 1][j] != '1')
+		{
+			map->walled = 0;
+			ft_printf("Map is not walled!\n");
+			return ;
+		}
+		j++;
+	}
+}
+
+static void	is_map_walled(t_map	*map)
+{
+	check_wall_vert(map);
+	if (map->walled == 0)
+		return ;
+	check_wall_hor(map);
+}
+
 void	map_validation(char *map_path)
 {
 	t_map	map;
@@ -117,6 +171,7 @@ void	map_validation(char *map_path)
 	feed_lines(&map);
 	is_map_rectangle(&map);
 	are_map_chars_valid(&map);
+	is_map_walled(&map);
 	/* i = 0;
 	while (map.lines[i])
 	{
