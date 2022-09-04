@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:31:24 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/03 21:01:41 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/03 21:50:39 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	input_validation(int argc, char *map_path)
 {
 	char	*substr;
+
 	if (argc != 2)
 	{
 		ft_printf("Only one parameter is accepted! The map file!\n");

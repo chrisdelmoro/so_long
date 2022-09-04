@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:49:38 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/02 20:12:17 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/03 21:49:49 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	flush_map(t_map *map)
 	size_t	i;
 
 	i = 0;
-	while(map->lines[i])
+	while (map->lines[i])
 	{
 		free(map->lines[i]);
 		map->lines[i] = NULL;
