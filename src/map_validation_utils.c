@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:04:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/03 22:59:53 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/04 18:05:10 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	count_lines(t_map *map)
 {
 	char	*gnl_line;
 
-	map->line_count = 0;
 	gnl_line = get_next_line(map->fd);
 	while (gnl_line)
 	{
@@ -154,11 +153,42 @@ static void	is_map_walled(t_map	*map)
 	check_wall_hor(map);
 }
 
+static void	validate_game_elements(t_map *map)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (map->lines[i])
+	{
+		while (map->lines[i][j])
+		{
+			if (map->lines[i][j] == 'E')
+				map->exits++;
+			if (map->lines[i][j] == 'P')
+				map->players++;
+			if (map->lines[i][j] == 'C')
+				map->collectables++;
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	if (map->exits < 1 || map->exits > 1)
+		ft_printf("Map must have one and only one exit!\n");
+	if (map->players < 1 || map->players > 1)
+		ft_printf("Map must have one and only one player character!\n");
+	if (map->collectables < 1)
+		ft_printf("Map must have at least one collectable!\n");
+}
+
 void	map_validation(char *map_path)
 {
 	t_map	map;
 	/* size_t	i; */
 
+	initialize_map(&map);
 	map.fd = open(map_path, O_RDONLY);
 	if (map.fd < 0)
 		ft_printf("Error! Failed to load map file!\n");
@@ -172,6 +202,7 @@ void	map_validation(char *map_path)
 	is_map_rectangle(&map);
 	are_map_chars_valid(&map);
 	is_map_walled(&map);
+	validate_game_elements(&map);
 	/* i = 0;
 	while (map.lines[i])
 	{

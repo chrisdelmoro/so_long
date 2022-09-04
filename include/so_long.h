@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/03 19:30:04 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/04 17:39:58 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_map
 	int		rectangle;
 	int		valid_chars;
 	int		walled;
-	int		entrances;
+	int		collectables;
 	int		players;
 	int		exits;
 	int		line_count;
@@ -72,6 +72,9 @@ typedef struct s_map
 
 /* input_validation_utils.c */
 int		input_validation(int argc, char *map_path);
+
+/* initialization_utils.c */
+void	initialize_map(t_map *map);
 
 /* map_validation_utils.c */
 void	map_validation(char *map_path);
