@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/04 21:18:20 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:55:45 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_map
 /* Prototypes */
 
 /* input_validation_utils.c */
-int		input_validation(int argc, char *map_path);
+void	input_validation(int argc, char *map_path);
 
 /* initialization_utils.c */
 void	initialize_map(t_map *map);
