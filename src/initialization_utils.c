@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:38:32 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/04 18:07:30 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/04 20:54:00 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	initialize_map(t_map *map)
 {
-	map->fd = -1; //???
-	map->rectangle = -1;
-	map->valid_chars = -1;
-	map->walled = -1;
+	map->fd = -1;
+	map->rectangle = 0;
+	map->valid_chars = 0;
+	map->walled = 0;
 	map->collectables = 0;
 	map->players = 0;
 	map->exits = 0;

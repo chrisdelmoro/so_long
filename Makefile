@@ -12,6 +12,7 @@ SRC_DIR			= ./src/
 SRC				= 	so_long.c \
 					input_validation_utils.c \
 					map_validation_utils.c \
+					map_validation_utils_2.c \
 					initialization_utils.c \
 					close_utils.c
 SRC_PATH		= $(addprefix $(SRC_DIR), $(SRC))

@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/04 17:39:58 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/04 21:18:20 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,14 @@ int		input_validation(int argc, char *map_path);
 void	initialize_map(t_map *map);
 
 /* map_validation_utils.c */
-void	map_validation(char *map_path);
+void	map_validation(t_map *map, char *map_path);
+
+/* map_validation_utils_2.c */
+void	validate_game_elements(t_map *map);
+void	is_map_walled(t_map	*map);
 
 /* close_utils.c */
+void	error_occurred(char *err_msg, t_map *map);
 void	flush_map(t_map *map);
 
 #endif
