@@ -6,88 +6,89 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 21:14:46 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/04 21:18:01 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:12:50 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-static void	check_wall_vert(t_map *map)
+static void	check_wall_vert(t_window *data)
 {
 	size_t	i;
 
 	i = 0;
-	while (map->lines[i])
+	while (data->map.lines[i])
 	{
-		if (map->lines[i][0] != '1' || map->lines[i][ft_strlen(map->lines[i]) \
+		if (data->map.lines[i][0] != '1' || data->map.lines[i][ft_strlen(data->\
+map.lines[i]) \
 		- 1] != '1')
-			error_occurred("Map is not walled!", map);
+			error_occurred("Map is not walled!", data);
 		i++;
 	}
 }
 
-static void	check_wall_hor(t_map *map)
+static void	check_wall_hor(t_window *data)
 {
 	size_t	j;
 
 	j = 0;
-	while (map->lines[0][j])
+	while (data->map.lines[0][j])
 	{
-		if (map->lines[0][j] != '1')
-			error_occurred("Map is not walled!", map);
+		if (data->map.lines[0][j] != '1')
+			error_occurred("Map is not walled!", data);
 		j++;
 	}
 	j = 0;
-	while (map->lines[(map->line_count) - 1][j])
+	while (data->map.lines[(data->map.line_count) - 1][j])
 	{
-		if (map->lines[(map->line_count) - 1][j] != '1')
-			error_occurred("Map is not walled!", map);
+		if (data->map.lines[(data->map.line_count) - 1][j] != '1')
+			error_occurred("Map is not walled!", data);
 		j++;
 	}
-	map->walled = 1;
+	data->map.walled = 1;
 }
 
-void	is_map_walled(t_map	*map)
+void	is_map_walled(t_window *data)
 {
-	check_wall_vert(map);
-	check_wall_hor(map);
+	check_wall_vert(data);
+	check_wall_hor(data);
 }
 
-static void	validate_game_elements_error(t_map *map)
+static void	validate_game_elements_error(t_window *data)
 {
-	if (map->exits < 1)
-		error_occurred("Map must have at least one exit!", map);
-	if (map->exits > 1)
-		error_occurred("Map must have only one exit!", map);
-	if (map->players < 1)
-		error_occurred("Map must have at least one player character!", map);
-	if (map->players > 1)
-		error_occurred("Map must have only one player character!", map);
-	if (map->collectables < 1)
-		error_occurred("Map must have at least one collectable!", map);
+	if (data->map.exits < 1)
+		error_occurred("Map must have at least one exit!", data);
+	if (data->map.exits > 1)
+		error_occurred("Map must have only one exit!", data);
+	if (data->map.players < 1)
+		error_occurred("Map must have at least one player character!", data);
+	if (data->map.players > 1)
+		error_occurred("Map must have only one player character!", data);
+	if (data->map.collectables < 1)
+		error_occurred("Map must have at least one collectable!", data);
 }
 
-void	validate_game_elements(t_map *map)
+void	validate_game_elements(t_window *data)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
 	j = 0;
-	while (map->lines[i])
+	while (data->map.lines[i])
 	{
-		while (map->lines[i][j])
+		while (data->map.lines[i][j])
 		{
-			if (map->lines[i][j] == 'E')
-				map->exits++;
-			if (map->lines[i][j] == 'P')
-				map->players++;
-			if (map->lines[i][j] == 'C')
-				map->collectables++;
+			if (data->map.lines[i][j] == 'E')
+				data->map.exits++;
+			if (data->map.lines[i][j] == 'P')
+				data->map.players++;
+			if (data->map.lines[i][j] == 'C')
+				data->map.collectables++;
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-	validate_game_elements_error(map);
+	validate_game_elements_error(data);
 }

@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/05 11:55:45 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:17:09 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,14 @@
 
 typedef struct s_img
 {
-	void	*mlx_img;
+	void	*sprite_img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		width;
+	int		height;
 }				t_img;
-
-typedef struct s_window
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-}				t_window;
 
 typedef struct s_map
 {
@@ -65,8 +60,21 @@ typedef struct s_map
 	int		players;
 	int		exits;
 	int		line_count;
+	int		collum_count;
 	char	**lines;
 }				t_map;
+
+typedef struct s_window
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	player;
+	t_img	collectable;
+	t_img	exit;
+	t_img	wall;
+	t_img	background;
+	t_map	map;
+}				t_window;
 
 /* Prototypes */
 
@@ -74,17 +82,18 @@ typedef struct s_map
 void	input_validation(int argc, char *map_path);
 
 /* initialization_utils.c */
-void	initialize_map(t_map *map);
+void	initialize_map(t_window *data);
+void	load_sprites(t_window *data);
 
 /* map_validation_utils.c */
-void	map_validation(t_map *map, char *map_path);
+void	map_validation(t_window *data, char *map_path);
 
 /* map_validation_utils_2.c */
-void	validate_game_elements(t_map *map);
-void	is_map_walled(t_map	*map);
+void	validate_game_elements(t_window *data);
+void	is_map_walled(t_window *data);
 
 /* close_utils.c */
-void	error_occurred(char *err_msg, t_map *map);
-void	flush_map(t_map *map);
+void	error_occurred(char *err_msg, t_window *data);
+void	flush_map(t_window *data);
 
 #endif
