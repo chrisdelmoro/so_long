@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:58:04 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/07 18:25:39 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:41:42 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	render_map(t_window *data)
 
 	i = 0;
 	j = 0;
+	if (data->win_ptr == NULL)
+		return (1);
 	while (j < (size_t) data->map.line_count)
 	{
 		while (i < (size_t) data->map.collum_count)
@@ -50,7 +52,6 @@ int	render_map(t_window *data)
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
 	data->wall.sprite_img, 0, 0);
-	//mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }
 
@@ -62,6 +63,22 @@ void	initialize_window(t_window *data)
 	data->map.line_count * 64, "so_long");
 }
 
+int	handle_keypress(int keysym, t_window *data)
+{
+	if (keysym == XK_Escape)
+	{
+		mlx_destroy_image(data->mlx_ptr, data->player.sprite_img);
+		mlx_destroy_image(data->mlx_ptr, data->collectable.sprite_img);
+		mlx_destroy_image(data->mlx_ptr, data->exit.sprite_img);
+		mlx_destroy_image(data->mlx_ptr, data->wall.sprite_img);
+		mlx_destroy_image(data->mlx_ptr, data->background.sprite_img);
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		data->win_ptr = NULL;
+	}
+	ft_printf("Keypress: %d\n", keysym);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_window	data;
@@ -70,9 +87,11 @@ int	main(int argc, char **argv)
 	map_validation(&data, argv[1]);
 	initialize_window(&data);
 	load_sprites(&data);
-	//data.img.mlx_img = mlx_new_image(data.mlx_ptr, 800, 600);
 	mlx_loop_hook(data.mlx_ptr, &render_map, &data);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, handle_keypress, &data);
 	mlx_loop(data.mlx_ptr);
+	mlx_destroy_display(data.mlx_ptr);
+	ft_freethis((char **)&data.mlx_ptr, NULL);
 	flush_map(&data);
 	return (0);
 }
