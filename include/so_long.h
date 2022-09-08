@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/07 18:17:09 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:32:15 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_map
 	int		exits;
 	int		line_count;
 	int		collum_count;
+	int		player_line;
+	int		player_collum;
 	char	**lines;
 }				t_map;
 
@@ -95,5 +97,11 @@ void	is_map_walled(t_window *data);
 /* close_utils.c */
 void	error_occurred(char *err_msg, t_window *data);
 void	flush_map(t_window *data);
+
+/* player_move_utils.c */
+void	move_up(t_window *data);
+void	move_left(t_window *data);
+void	move_down(t_window *data);
+void	move_right(t_window *data);
 
 #endif

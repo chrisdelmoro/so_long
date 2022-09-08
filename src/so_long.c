@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:58:04 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/08 14:41:42 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:34:37 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,48 @@ int	handle_keypress(int keysym, t_window *data)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 	}
-	ft_printf("Keypress: %d\n", keysym);
+	if (keysym == XK_w)
+	{
+		move_up(data);
+	}
+	if (keysym == XK_a)
+	{
+		move_left(data);
+	}
+	if (keysym == XK_s)
+	{
+		move_down(data);
+	}
+	if (keysym == XK_d)
+	{
+		move_right(data);
+	}
+	//ft_printf("Keypress: %d\n", keysym);
 	return (0);
+}
+
+static void	get_player_position(t_window *data)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (data->map.lines[i])
+	{
+		while (data->map.lines[i][j])
+		{
+			if (data->map.lines[i][j] == 'P')
+			{
+				data->map.player_line = i;
+				data->map.player_collum = j;
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	ft_printf("Player_line: %d / Player_collum: %d\n", data->map.player_line, data->map.player_collum);
 }
 
 int	main(int argc, char **argv)
@@ -85,13 +125,14 @@ int	main(int argc, char **argv)
 
 	input_validation(argc, argv[1]);
 	map_validation(&data, argv[1]);
+	get_player_position(&data);
 	initialize_window(&data);
 	load_sprites(&data);
 	mlx_loop_hook(data.mlx_ptr, &render_map, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, handle_keypress, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);
-	ft_freethis((char **)&data.mlx_ptr, NULL);
+	ft_freethis((char **) &data.mlx_ptr, NULL);
 	flush_map(&data);
 	return (0);
 }

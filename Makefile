@@ -14,7 +14,8 @@ SRC				= 	so_long.c \
 					map_validation_utils.c \
 					map_validation_utils_2.c \
 					initialization_utils.c \
-					close_utils.c
+					close_utils.c \
+					player_move_utils.c
 SRC_PATH		= $(addprefix $(SRC_DIR), $(SRC))
 
 OBJ				= $(SRC_PATH:.c=.o)

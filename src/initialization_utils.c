@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:38:32 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/07 18:20:16 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:10:41 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	initialize_map(t_window *data)
 	data->map.exits = 0;
 	data->map.line_count = 0;
 	data->map.collum_count = 0;
+	data->map.player_line = 0;
+	data->map.player_collum = 0;
 	data->map.lines = NULL;
 }
 
