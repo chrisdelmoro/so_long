@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/08 16:32:15 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:46:45 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ typedef struct s_map
 	int		rectangle;
 	int		valid_chars;
 	int		walled;
-	int		collectables;
-	int		players;
-	int		exits;
+	int		collectable_count;
+	int		player_count;
+	int		exit_count;
 	int		line_count;
 	int		collum_count;
 	int		player_line;
@@ -70,6 +70,8 @@ typedef struct s_window
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		score;
+	int		move_count;
 	t_img	player;
 	t_img	collectable;
 	t_img	exit;
@@ -86,6 +88,8 @@ void	input_validation(int argc, char *map_path);
 /* initialization_utils.c */
 void	initialize_map(t_window *data);
 void	load_sprites(t_window *data);
+void	initialize_game_stats(t_window *data);
+void	initialize_vars(t_window *data);
 
 /* map_validation_utils.c */
 void	map_validation(t_window *data, char *map_path);
@@ -103,5 +107,8 @@ void	move_up(t_window *data);
 void	move_left(t_window *data);
 void	move_down(t_window *data);
 void	move_right(t_window *data);
+
+/* so_long.c */
+int	handle_keypress(int keysym, t_window *data);
 
 #endif

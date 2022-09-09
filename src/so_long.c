@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:58:04 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/08 16:34:37 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:32:40 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ static void	get_player_position(t_window *data)
 		j = 0;
 		i++;
 	}
-	ft_printf("Player_line: %d / Player_collum: %d\n", data->map.player_line, data->map.player_collum);
 }
 
 int	main(int argc, char **argv)
@@ -124,6 +123,7 @@ int	main(int argc, char **argv)
 	t_window	data;
 
 	input_validation(argc, argv[1]);
+	initialize_vars(&data);
 	map_validation(&data, argv[1]);
 	get_player_position(&data);
 	initialize_window(&data);

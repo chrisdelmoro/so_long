@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 21:14:46 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/07 18:12:50 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/09 10:50:51 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ void	is_map_walled(t_window *data)
 
 static void	validate_game_elements_error(t_window *data)
 {
-	if (data->map.exits < 1)
+	if (data->map.exit_count < 1)
 		error_occurred("Map must have at least one exit!", data);
-	if (data->map.exits > 1)
+	if (data->map.exit_count > 1)
 		error_occurred("Map must have only one exit!", data);
-	if (data->map.players < 1)
+	if (data->map.player_count < 1)
 		error_occurred("Map must have at least one player character!", data);
-	if (data->map.players > 1)
+	if (data->map.player_count > 1)
 		error_occurred("Map must have only one player character!", data);
-	if (data->map.collectables < 1)
+	if (data->map.collectable_count < 1)
 		error_occurred("Map must have at least one collectable!", data);
 }
 
@@ -80,11 +80,11 @@ void	validate_game_elements(t_window *data)
 		while (data->map.lines[i][j])
 		{
 			if (data->map.lines[i][j] == 'E')
-				data->map.exits++;
+				data->map.exit_count++;
 			if (data->map.lines[i][j] == 'P')
-				data->map.players++;
+				data->map.player_count++;
 			if (data->map.lines[i][j] == 'C')
-				data->map.collectables++;
+				data->map.collectable_count++;
 			j++;
 		}
 		j = 0;

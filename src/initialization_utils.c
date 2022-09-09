@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:38:32 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/08 16:10:41 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/09 10:50:19 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	initialize_map(t_window *data)
 	data->map.rectangle = 0;
 	data->map.valid_chars = 0;
 	data->map.walled = 0;
-	data->map.collectables = 0;
-	data->map.players = 0;
-	data->map.exits = 0;
+	data->map.collectable_count = 0;
+	data->map.player_count = 0;
+	data->map.exit_count = 0;
 	data->map.line_count = 0;
 	data->map.collum_count = 0;
 	data->map.player_line = 0;
@@ -62,4 +62,17 @@ void	load_sprites(t_window *data)
 	data->player.addr = mlx_get_data_addr(data->player.sprite_img, \
 	&data->player.bpp, &data->player.line_len, &data->player.endian);
 	load_sprites_2(data);
+}
+
+
+void	initialize_game_stats(t_window *data)
+{
+	data->score = 0;
+	data->move_count = 0;
+}
+
+void	initialize_vars(t_window *data)
+{
+	initialize_map(data);
+	initialize_game_stats(data);
 }

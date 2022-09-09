@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:04:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/07 18:12:24 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/09 10:45:38 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ Only 'EPC10' are valid characters!", data);
 
 void	map_validation(t_window *data, char *map_path)
 {
-	initialize_map(data);
 	data->map.fd = open(map_path, O_RDONLY);
 	if (data->map.fd < 0)
 		error_occurred("Error! Failed to load map file!", data);
