@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:58:04 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 14:32:40 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:50:43 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	check_sprite_position(t_window *data, size_t i, size_t j)
 		data->exit.sprite_img, i * 64, j * 64);
 }
 
-int	render_map(t_window *data)
+static int	render_map(t_window *data)
 {
 	size_t	i;
 	size_t	j;
@@ -55,7 +55,7 @@ int	render_map(t_window *data)
 	return (0);
 }
 
-void	initialize_window(t_window *data)
+static void	initialize_window(t_window *data)
 {
 	data->map.collum_count = ft_strlen(data->map.lines[0]);
 	data->mlx_ptr = mlx_init();
@@ -91,7 +91,12 @@ int	handle_keypress(int keysym, t_window *data)
 	{
 		move_right(data);
 	}
-	//ft_printf("Keypress: %d\n", keysym);
+	return (0);
+}
+
+int	handle_x_click(t_window *data)
+{
+	handle_keypress(XK_Escape, data);
 	return (0);
 }
 
@@ -130,6 +135,7 @@ int	main(int argc, char **argv)
 	load_sprites(&data);
 	mlx_loop_hook(data.mlx_ptr, &render_map, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, handle_keypress, &data);
+	mlx_hook(data.win_ptr, DestroyNotify, NoEventMask, handle_x_click, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);
 	ft_freethis((char **) &data.mlx_ptr, NULL);
