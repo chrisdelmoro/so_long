@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 14:46:45 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/09 21:03:55 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ typedef struct s_window
 void	input_validation(int argc, char *map_path);
 
 /* initialization_utils.c */
-void	initialize_map(t_window *data);
 void	load_sprites(t_window *data);
-void	initialize_game_stats(t_window *data);
 void	initialize_vars(t_window *data);
 
 /* map_validation_utils.c */
@@ -98,9 +96,13 @@ void	map_validation(t_window *data, char *map_path);
 void	validate_game_elements(t_window *data);
 void	is_map_walled(t_window *data);
 
+/* map_validation_utils_3.c */
+void	get_player_position(t_window *data);
+
 /* close_utils.c */
 void	error_occurred(char *err_msg, t_window *data);
 void	flush_map(t_window *data);
+void	destroy_imgs(t_window *data);
 
 /* player_move_utils.c */
 void	move_up(t_window *data);
@@ -108,7 +110,15 @@ void	move_left(t_window *data);
 void	move_down(t_window *data);
 void	move_right(t_window *data);
 
+/* hooks_utils.c */
+int		handle_keypress(int keysym, t_window *data);
+int		handle_x_click(t_window *data);
+
+/* render_utils.c */
+int		render_map(t_window *data);
+void	initialize_window(t_window *data);
+
 /* so_long.c */
-int	handle_keypress(int keysym, t_window *data);
+int		handle_keypress(int keysym, t_window *data);
 
 #endif

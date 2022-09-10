@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:04:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 10:45:38 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/09 20:39:56 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ sizeof(char *));
 	are_map_chars_valid(data);
 	is_map_walled(data);
 	validate_game_elements(data);
+	get_player_position(data);
 }

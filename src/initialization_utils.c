@@ -6,13 +6,13 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:38:32 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 10:50:19 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/09 21:03:30 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-void	initialize_map(t_window *data)
+static void	initialize_map(t_window *data)
 {
 	data->map.fd = -1;
 	data->map.rectangle = 0;
@@ -26,6 +26,12 @@ void	initialize_map(t_window *data)
 	data->map.player_line = 0;
 	data->map.player_collum = 0;
 	data->map.lines = NULL;
+}
+
+static void	initialize_game_stats(t_window *data)
+{
+	data->score = 0;
+	data->move_count = 0;
 }
 
 static void	load_sprites_2(t_window *data)
@@ -62,13 +68,6 @@ void	load_sprites(t_window *data)
 	data->player.addr = mlx_get_data_addr(data->player.sprite_img, \
 	&data->player.bpp, &data->player.line_len, &data->player.endian);
 	load_sprites_2(data);
-}
-
-
-void	initialize_game_stats(t_window *data)
-{
-	data->score = 0;
-	data->move_count = 0;
 }
 
 void	initialize_vars(t_window *data)

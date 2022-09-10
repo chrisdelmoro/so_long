@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:49:38 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/07 14:32:14 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/09 20:58:01 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,15 @@ void	flush_map(t_window *data)
 		free(data->map.lines);
 		data->map.lines = NULL;
 	}
+}
+
+void	destroy_imgs(t_window *data)
+{
+	mlx_destroy_image(data->mlx_ptr, data->player.sprite_img);
+	mlx_destroy_image(data->mlx_ptr, data->collectable.sprite_img);
+	mlx_destroy_image(data->mlx_ptr, data->exit.sprite_img);
+	mlx_destroy_image(data->mlx_ptr, data->wall.sprite_img);
+	mlx_destroy_image(data->mlx_ptr, data->background.sprite_img);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	data->win_ptr = NULL;
 }
