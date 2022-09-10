@@ -14,7 +14,7 @@ HEADER_BONUS		= so_long_bonus.h
 HEADER_PATH			= $(addprefix $(HEADER_DIR_BONUS), $(HEADER_BONUS))
 
 SRC_DIR			= ./src/
-SRC				= 	so_long.c \
+SRC				=	so_long.c \
 					input_validation_utils.c \
 					map_validation_utils.c \
 					map_validation_utils_2.c \
@@ -27,7 +27,7 @@ SRC				= 	so_long.c \
 SRC_PATH		= $(addprefix $(SRC_DIR), $(SRC))
 
 SRC_DIR_BONUS	= ./bonus/src/
-SRC_BONUS		= 	so_long_bonus.c \
+SRC_BONUS		=	so_long_bonus.c \
 					input_validation_utils_bonus.c \
 					map_validation_utils_bonus.c \
 					map_validation_utils_2_bonus.c \
@@ -39,13 +39,11 @@ SRC_BONUS		= 	so_long_bonus.c \
 					render_utils_bonus.c
 SRC_PATH_BONUS	= $(addprefix $(SRC_DIR_BONUS), $(SRC_BONUS))
 
-OBJ				= $(SRC_PATH:.c=.o)
-
 CC				= gcc
 CFLAGS			= -Wall -Wextra -Werror
 MLXFLAGS		= -lmlx -lX11 -lXext
 
-BIN				= ./bin
+BIN				= ./bin/
 BINARY_OUT		= $(addprefix $(BIN), $(NAME))
 
 BIN_BONUS			= ./bonus/bin/
@@ -53,9 +51,9 @@ BINARY_OUT_BONUS	= $(addprefix $(BIN_BONUS), $(NAME_BONUS))
 
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --tool=memcheck
 
-all: $(NAME)
+all: $(BINARY_OUT)
 
-$(NAME): $(SRC_PATH)
+$(BINARY_OUT): $(SRC_PATH)
 	@ $(MAKE) -C $(LIBFT_DIR)
 	@ cp $(LIBFT) $(NAME)
 	@ mkdir -p $(BIN)
@@ -89,7 +87,7 @@ $(BINARY_OUT_BONUS): $(SRC_PATH_BONUS)
 valgrind:
 	@ $(MAKE) -C $(LIBFT_DIR)
 	@ cp $(LIBFT) $(NAME)
-	@ mkdir -p $(BIN_)
+	@ mkdir -p $(BIN)
 	@ $(CC) $(CFLAGS) $(SRC_PATH) -I $(HEADER_DIR) -I $(HEADER_LIBFT) -L $(LIBFT_DIR) -lft $(MLXFLAGS) -g -o $(NAME)
 	@ mv $(NAME) $(BIN)
 	@ echo "$(NAME) compiled successfully!"
