@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/10 13:44:23 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:35:36 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	get_player_position(t_game *data);
 /* close_utils.c */
 void	error_occurred(char *err_msg, t_game *data);
 void	flush_map(t_game *data);
-void	destroy_imgs(t_game *data);
+void	close_game(t_game *data);
 
 /* player_move_utils.c */
 void	move_up(t_game *data);

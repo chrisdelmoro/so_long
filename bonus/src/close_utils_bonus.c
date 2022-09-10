@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:49:38 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/10 16:35:10 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:39:48 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	flush_map(t_game *data)
 	}
 }
 
-void	destroy_imgs(t_game *data)
+void	close_game(t_game *data)
 {
 	mlx_destroy_image(data->mlx_ptr, data->player.sprite_img);
 	mlx_destroy_image(data->mlx_ptr, data->enemy.sprite_img);
