@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:52:14 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/10 11:19:02 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:28:27 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	handle_keypress(int keysym, t_game *data)
 {
 	if (keysym == XK_Escape)
-		destroy_imgs(data);
+		close_game(data);
 	if (keysym == XK_w)
 		move_up(data);
 	if (keysym == XK_a)
@@ -29,6 +29,6 @@ int	handle_keypress(int keysym, t_game *data)
 
 int	handle_x_click(t_game *data)
 {
-	destroy_imgs(data);
+	close_game(data);
 	return (0);
 }

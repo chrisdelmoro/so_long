@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:00:24 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/10 11:17:46 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:29:13 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	move_up(t_game *data)
 		else if (data->score == data->map.collectable_count)
 		{
 			ft_printf("Final Score: %d\n", data->score);
-			destroy_imgs(data);
+			close_game(data);
 		}
 		else
 			ft_printf("Not all rupies were collected!\n");
@@ -73,7 +73,7 @@ void	move_left(t_game *data)
 		else if (data->score == data->map.collectable_count)
 		{
 			ft_printf("Final Score: %d\n", data->score);
-			destroy_imgs(data);
+			close_game(data);
 		}
 		else
 			ft_printf("Not all rupies were collected!\n");
@@ -101,7 +101,7 @@ void	move_down(t_game *data)
 		else if (data->score == data->map.collectable_count)
 		{
 			ft_printf("Final Score: %d\n", data->score);
-			destroy_imgs(data);
+			close_game(data);
 		}
 		else
 			ft_printf("Not all rupies were collected!\n");
@@ -129,7 +129,7 @@ void	move_right(t_game *data)
 		else if (data->score == data->map.collectable_count)
 		{
 			ft_printf("Final Score: %d\n", data->score);
-			destroy_imgs(data);
+			close_game(data);
 		}
 		else
 			ft_printf("Not all rupies were collected!\n");

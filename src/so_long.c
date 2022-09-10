@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:58:04 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/10 11:17:23 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:29:45 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,5 @@ int	main(int argc, char **argv)
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, handle_keypress, &data);
 	mlx_hook(data.win_ptr, DestroyNotify, NoEventMask, handle_x_click, &data);
 	mlx_loop(data.mlx_ptr);
-	mlx_destroy_display(data.mlx_ptr);
-	ft_freethis((char **) &data.mlx_ptr, NULL);
-	flush_map(&data);
 	return (0);
 }
