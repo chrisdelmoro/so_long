@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:04:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 20:39:56 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/09 21:11:41 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ static void	is_map_rectangle(t_window *data)
 
 	i = 1;
 	if (data->map.line_count < 3)
-		error_occurred("Map need to be at least 3 lines deep.", data);
+		error_occurred("Error\nMap need to be at least 3 lines deep.", data);
 	while (data->map.lines[i])
 	{
 		if (ft_strlen(data->map.lines[0]) != ft_strlen(data->map.lines[i]))
-			error_occurred("Map is not a rectangle!", data);
+			error_occurred("Error\nMap is not a rectangle!", data);
 		i++;
 	}
 	data->map.rectangle = 1;
@@ -79,8 +79,8 @@ static void	are_map_chars_valid(t_window *data)
 		while (data->map.lines[i][j])
 		{
 			if (!ft_strchr(VALID_MAP_CHARS, data->map.lines[i][j]))
-				error_occurred("Invalid characters present on map file!\n\
-Only 'EPC10' are valid characters!", data);
+				error_occurred("Error\nInvalid characters present on map \
+file!\nOnly 'EPC10' are valid characters!", data);
 			j++;
 		}
 		j = 0;
@@ -93,14 +93,14 @@ void	map_validation(t_window *data, char *map_path)
 {
 	data->map.fd = open(map_path, O_RDONLY);
 	if (data->map.fd < 0)
-		error_occurred("Error! Failed to load map file!", data);
+		error_occurred("Error\nFailed to load map file!", data);
 	count_lines(data);
 	data->map.lines = (char **) ft_calloc(data->map.line_count + 1, \
 sizeof(char *));
 	close(data->map.fd);
 	data->map.fd = open(map_path, O_RDONLY);
 	if (data->map.fd < 0)
-		error_occurred("Error! Failed to load map file!", data);
+		error_occurred("Error\nFailed to load map file!", data);
 	feed_lines(data);
 	close(data->map.fd);
 	is_map_rectangle(data);
