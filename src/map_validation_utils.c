@@ -6,13 +6,13 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:04:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 21:11:41 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 11:18:11 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-static void	count_lines(t_window *data)
+static void	count_lines(t_game *data)
 {
 	char	*gnl_line;
 
@@ -26,7 +26,7 @@ static void	count_lines(t_window *data)
 	ft_freethis(&gnl_line, NULL);
 }
 
-static void	feed_lines(t_window *data)
+static void	feed_lines(t_game *data)
 {
 	char	*gnl_line;
 	char	*treated_line;
@@ -51,7 +51,7 @@ static void	feed_lines(t_window *data)
 	ft_freethis(&gnl_line, NULL);
 }
 
-static void	is_map_rectangle(t_window *data)
+static void	is_map_rectangle(t_game *data)
 {
 	size_t	i;
 
@@ -67,7 +67,7 @@ static void	is_map_rectangle(t_window *data)
 	data->map.rectangle = 1;
 }
 
-static void	are_map_chars_valid(t_window *data)
+static void	are_map_chars_valid(t_game *data)
 {
 	size_t	i;
 	size_t	j;
@@ -89,7 +89,7 @@ file!\nOnly 'EPC10' are valid characters!", data);
 	data->map.valid_chars = 1;
 }
 
-void	map_validation(t_window *data, char *map_path)
+void	map_validation(t_game *data, char *map_path)
 {
 	data->map.fd = open(map_path, O_RDONLY);
 	if (data->map.fd < 0)

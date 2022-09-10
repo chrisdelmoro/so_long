@@ -6,13 +6,13 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:54:01 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 20:55:46 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 11:17:36 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-static void	check_sprite_position(t_window *data, size_t i, size_t j)
+static void	check_sprite_position(t_game *data, size_t i, size_t j)
 {
 	if (data->map.lines[j][i] == '1')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
@@ -31,7 +31,7 @@ static void	check_sprite_position(t_window *data, size_t i, size_t j)
 		data->exit.sprite_img, i * 64, j * 64);
 }
 
-int	render_map(t_window *data)
+int	render_map(t_game *data)
 {
 	size_t	i;
 	size_t	j;
@@ -55,7 +55,7 @@ int	render_map(t_window *data)
 	return (0);
 }
 
-void	initialize_window(t_window *data)
+void	initialize_window(t_game *data)
 {
 	data->map.collum_count = ft_strlen(data->map.lines[0]);
 	data->mlx_ptr = mlx_init();

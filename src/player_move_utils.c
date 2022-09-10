@@ -6,13 +6,13 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:00:24 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 20:58:59 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 11:17:46 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-static void	change_player_sprite(t_window *data, char *sprite_path)
+static void	change_player_sprite(t_game *data, char *sprite_path)
 {
 	mlx_destroy_image(data->mlx_ptr, data->player.sprite_img);
 	data->player.sprite_img = mlx_xpm_file_to_image(data->mlx_ptr, \
@@ -24,7 +24,7 @@ static void	change_player_sprite(t_window *data, char *sprite_path)
 	ft_printf("Movements: %d\n", data->move_count);
 }
 
-void	move_up(t_window *data)
+void	move_up(t_game *data)
 {
 	if (data->map.lines[data->map.player_line - 1] \
 	[data->map.player_collum] != '1')
@@ -52,7 +52,7 @@ void	move_up(t_window *data)
 	}
 }
 
-void	move_left(t_window *data)
+void	move_left(t_game *data)
 {
 	if (data->map.lines[data->map.player_line] \
 	[data->map.player_collum - 1] != '1')
@@ -80,7 +80,7 @@ void	move_left(t_window *data)
 	}
 }
 
-void	move_down(t_window *data)
+void	move_down(t_game *data)
 {
 	if (data->map.lines[data->map.player_line + 1] \
 	[data->map.player_collum] != '1')
@@ -108,7 +108,7 @@ void	move_down(t_window *data)
 	}
 }
 
-void	move_right(t_window *data)
+void	move_right(t_game *data)
 {
 	if (data->map.lines[data->map.player_line] \
 	[data->map.player_collum + 1] != '1')

@@ -6,20 +6,20 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:49:38 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 20:58:01 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 11:19:20 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-void	error_occurred(char *err_msg, t_window *data)
+void	error_occurred(char *err_msg, t_game *data)
 {
 	ft_printf("%s\n", err_msg);
 	flush_map(data);
 	exit(0);
 }
 
-void	flush_map(t_window *data)
+void	flush_map(t_game *data)
 {
 	size_t	i;
 
@@ -37,7 +37,7 @@ void	flush_map(t_window *data)
 	}
 }
 
-void	destroy_imgs(t_window *data)
+void	destroy_imgs(t_game *data)
 {
 	mlx_destroy_image(data->mlx_ptr, data->player.sprite_img);
 	mlx_destroy_image(data->mlx_ptr, data->collectable.sprite_img);

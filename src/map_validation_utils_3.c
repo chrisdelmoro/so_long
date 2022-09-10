@@ -6,13 +6,13 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:41:03 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 20:41:27 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 11:18:19 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-void	get_player_position(t_window *data)
+void	get_player_position(t_game *data)
 {
 	size_t	i;
 	size_t	j;

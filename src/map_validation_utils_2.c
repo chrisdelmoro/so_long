@@ -6,13 +6,13 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 21:14:46 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 21:13:11 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 11:18:40 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-static void	check_wall_vert(t_window *data)
+static void	check_wall_vert(t_game *data)
 {
 	size_t	i;
 
@@ -27,7 +27,7 @@ map.lines[i]) \
 	}
 }
 
-static void	check_wall_hor(t_window *data)
+static void	check_wall_hor(t_game *data)
 {
 	size_t	j;
 
@@ -48,13 +48,13 @@ static void	check_wall_hor(t_window *data)
 	data->map.walled = 1;
 }
 
-void	is_map_walled(t_window *data)
+void	is_map_walled(t_game *data)
 {
 	check_wall_vert(data);
 	check_wall_hor(data);
 }
 
-static void	validate_game_elements_error(t_window *data)
+static void	validate_game_elements_error(t_game *data)
 {
 	if (data->map.exit_count < 1)
 		error_occurred("Error\nMap must have at least one exit!", data);
@@ -69,7 +69,7 @@ static void	validate_game_elements_error(t_window *data)
 		error_occurred("Error\nMap must have at least one collectable!", data);
 }
 
-void	validate_game_elements(t_window *data)
+void	validate_game_elements(t_game *data)
 {
 	size_t	i;
 	size_t	j;

@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:58:04 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 20:54:22 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 11:17:23 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_window	data;
+	t_game	data;
 
 	input_validation(argc, argv[1]);
 	initialize_vars(&data);

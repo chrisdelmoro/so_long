@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 21:03:55 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 11:17:06 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_map
 	char	**lines;
 }				t_map;
 
-typedef struct s_window
+typedef struct s_game
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -78,7 +78,7 @@ typedef struct s_window
 	t_img	wall;
 	t_img	background;
 	t_map	map;
-}				t_window;
+}				t_game;
 
 /* Prototypes */
 
@@ -86,39 +86,39 @@ typedef struct s_window
 void	input_validation(int argc, char *map_path);
 
 /* initialization_utils.c */
-void	load_sprites(t_window *data);
-void	initialize_vars(t_window *data);
+void	load_sprites(t_game *data);
+void	initialize_vars(t_game *data);
 
 /* map_validation_utils.c */
-void	map_validation(t_window *data, char *map_path);
+void	map_validation(t_game *data, char *map_path);
 
 /* map_validation_utils_2.c */
-void	validate_game_elements(t_window *data);
-void	is_map_walled(t_window *data);
+void	validate_game_elements(t_game *data);
+void	is_map_walled(t_game *data);
 
 /* map_validation_utils_3.c */
-void	get_player_position(t_window *data);
+void	get_player_position(t_game *data);
 
 /* close_utils.c */
-void	error_occurred(char *err_msg, t_window *data);
-void	flush_map(t_window *data);
-void	destroy_imgs(t_window *data);
+void	error_occurred(char *err_msg, t_game *data);
+void	flush_map(t_game *data);
+void	destroy_imgs(t_game *data);
 
 /* player_move_utils.c */
-void	move_up(t_window *data);
-void	move_left(t_window *data);
-void	move_down(t_window *data);
-void	move_right(t_window *data);
+void	move_up(t_game *data);
+void	move_left(t_game *data);
+void	move_down(t_game *data);
+void	move_right(t_game *data);
 
 /* hooks_utils.c */
-int		handle_keypress(int keysym, t_window *data);
-int		handle_x_click(t_window *data);
+int		handle_keypress(int keysym, t_game *data);
+int		handle_x_click(t_game *data);
 
 /* render_utils.c */
-int		render_map(t_window *data);
-void	initialize_window(t_window *data);
+int		render_map(t_game *data);
+void	initialize_window(t_game *data);
 
 /* so_long.c */
-int		handle_keypress(int keysym, t_window *data);
+int		handle_keypress(int keysym, t_game *data);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:38:32 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/09 21:03:30 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 11:18:53 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-static void	initialize_map(t_window *data)
+static void	initialize_map(t_game *data)
 {
 	data->map.fd = -1;
 	data->map.rectangle = 0;
@@ -28,13 +28,13 @@ static void	initialize_map(t_window *data)
 	data->map.lines = NULL;
 }
 
-static void	initialize_game_stats(t_window *data)
+static void	initialize_game_stats(t_game *data)
 {
 	data->score = 0;
 	data->move_count = 0;
 }
 
-static void	load_sprites_2(t_window *data)
+static void	load_sprites_2(t_game *data)
 {
 	data->background.sprite_img = mlx_xpm_file_to_image(data->mlx_ptr, \
 	"./resources/images/background_zelda.xpm", &data->background.width, \
@@ -60,7 +60,7 @@ static void	load_sprites_2(t_window *data)
 	&data->exit.bpp, &data->exit.line_len, &data->exit.endian);
 }
 
-void	load_sprites(t_window *data)
+void	load_sprites(t_game *data)
 {
 	data->player.sprite_img = mlx_xpm_file_to_image(data->mlx_ptr, \
 	"./resources/images/link_front.xpm", &data->player.width, \
@@ -70,7 +70,7 @@ void	load_sprites(t_window *data)
 	load_sprites_2(data);
 }
 
-void	initialize_vars(t_window *data)
+void	initialize_vars(t_game *data)
 {
 	initialize_map(data);
 	initialize_game_stats(data);
