@@ -94,6 +94,14 @@ valgrind:
 	@ mv $(NAME) $(BIN)
 	@ echo "$(NAME) compiled successfully!"
 
+valgrind_bonus:
+	@ $(MAKE) -C $(LIBFT_DIR)
+	@ cp $(LIBFT) $(NAME_BONUS)
+	@ mkdir -p $(BIN_BONUS)
+	@ $(CC) $(CFLAGS) $(SRC_PATH_BONUS) -I $(HEADER_DIR_BONUS) -I $(HEADER_LIBFT) -L $(LIBFT_DIR) -lft $(MLXFLAGS) -g -o $(NAME_BONUS)
+	@ mv $(NAME_BONUS) $(BIN_BONUS)
+	@ echo "$(NAME_BONUS) compiled successfully!"
+
 re: fclean all
 
 .PHONY: all clean fclean re

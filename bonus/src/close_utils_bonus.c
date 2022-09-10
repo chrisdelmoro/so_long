@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:49:38 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/10 13:42:19 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:35:10 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	destroy_imgs(t_game *data)
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL;
 	mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
 	data->mlx_ptr = NULL;
 	flush_map(data);
 	exit(0);
