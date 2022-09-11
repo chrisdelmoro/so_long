@@ -37,7 +37,8 @@ SRC_BONUS		=	so_long_bonus.c \
 					player_move_utils_bonus.c \
 					player_move_utils_bonus_2.c \
 					hooks_utils_bonus.c \
-					render_utils_bonus.c
+					render_utils_bonus.c \
+					render_utils_bonus_2.c
 SRC_PATH_BONUS	= $(addprefix $(SRC_DIR_BONUS), $(SRC_BONUS))
 
 CC				= gcc

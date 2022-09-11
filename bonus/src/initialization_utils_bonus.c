@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:38:32 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/10 13:33:08 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:24:29 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ void	load_sprites(t_game *data)
 	data->enemy.addr = mlx_get_data_addr(data->enemy.sprite_img, \
 	&data->enemy.bpp, &data->enemy.line_len, &data->enemy.endian);
 	load_sprites_2(data);
+	data->movements.img = mlx_new_image(data->mlx_ptr, 128, 54);
+	data->movements.addr = mlx_get_data_addr(data->movements.img, \
+	&data->movements.bpp, &data->movements.line_len, &data->movements.endian);
 }
 
 void	initialize_vars(t_game *data)

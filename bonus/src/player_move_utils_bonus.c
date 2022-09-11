@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:00:24 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/10 22:15:24 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:03:56 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	change_player_sprite(t_game *data, char *sprite_path)
 	data->player.addr = mlx_get_data_addr(data->player.sprite_img, \
 	&data->player.bpp, &data->player.line_len, &data->player.endian);
 	data->move_count++;
-	ft_printf("Movements: %d\n", data->move_count);
 }
 
 void	move_up(t_game *data)

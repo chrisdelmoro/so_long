@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:54:01 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/10 13:28:23 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:29:45 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	render_map(t_game *data)
 		while (i < (size_t) data->map.collum_count)
 		{
 			check_sprite_position(data, i, j);
+			render_mov_board(data);
+			render_mov_count(data);
 			i++;
 		}
 		i = 0;
