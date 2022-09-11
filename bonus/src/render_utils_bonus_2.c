@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:27:36 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/11 19:31:56 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:36:33 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,5 @@ void	render_mov_count(t_game *data)
 	mov_str = ft_strjoin("Movements: ", mov_count);
 	ft_freethis(&mov_count, NULL);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 90, 36, 0x704848, mov_str);
+	ft_freethis(&mov_str, NULL);
 }
