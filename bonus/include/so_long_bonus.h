@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:22:37 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/10 18:35:36 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 22:13:35 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,17 @@ void	flush_map(t_game *data);
 void	close_game(t_game *data);
 
 /* player_move_utils.c */
+void	change_player_sprite(t_game *data, char *sprite_path);
 void	move_up(t_game *data);
 void	move_left(t_game *data);
 void	move_down(t_game *data);
 void	move_right(t_game *data);
+
+/* player_move_utils_2.c */
+void	walk_up(t_game *data);
+void	walk_left(t_game *data);
+void	walk_down(t_game *data);
+void	walk_right(t_game *data);
 
 /* hooks_utils.c */
 int		handle_keypress(int keysym, t_game *data);

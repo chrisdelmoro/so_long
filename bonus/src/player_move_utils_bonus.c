@@ -6,13 +6,13 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:00:24 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/09/10 18:38:31 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/09/10 22:15:24 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long_bonus.h>
 
-static void	change_player_sprite(t_game *data, char *sprite_path)
+void	change_player_sprite(t_game *data, char *sprite_path)
 {
 	mlx_destroy_image(data->mlx_ptr, data->player.sprite_img);
 	data->player.sprite_img = mlx_xpm_file_to_image(data->mlx_ptr, \
@@ -41,12 +41,7 @@ void	move_up(t_game *data)
 				ft_printf("You died! :(\n");
 				close_game(data);
 			}
-			data->map.lines[data->map.player_line] \
-			[data->map.player_collum] = '0';
-			data->map.lines[data->map.player_line - 1] \
-			[data->map.player_collum] = 'P';
-			data->map.player_line--;
-			change_player_sprite(data, "./resources/images/link_back.xpm");
+			walk_up(data);
 		}
 		else if (data->score == data->map.collectable_count)
 		{
@@ -70,17 +65,12 @@ void	move_left(t_game *data)
 			[data->map.player_collum - 1] == 'C')
 				data->score++;
 			if (data->map.lines[data->map.player_line] \
-			[data->map.player_collum - 1] ==  'K')
+			[data->map.player_collum - 1] == 'K')
 			{
 				ft_printf("You died! :(\n");
 				close_game(data);
 			}
-			data->map.lines[data->map.player_line] \
-			[data->map.player_collum] = '0';
-			data->map.lines[data->map.player_line] \
-			[data->map.player_collum - 1] = 'P';
-			data->map.player_collum--;
-			change_player_sprite(data, "./resources/images/link_left.xpm");
+			walk_left(data);
 		}
 		else if (data->score == data->map.collectable_count)
 		{
@@ -104,17 +94,12 @@ void	move_down(t_game *data)
 			[data->map.player_collum] == 'C')
 				data->score++;
 			if (data->map.lines[data->map.player_line + 1] \
-			[data->map.player_collum] ==  'K')
+			[data->map.player_collum] == 'K')
 			{
 				ft_printf("You died! :(\n");
 				close_game(data);
 			}
-			data->map.lines[data->map.player_line] \
-			[data->map.player_collum] = '0';
-			data->map.lines[data->map.player_line + 1] \
-			[data->map.player_collum] = 'P';
-			data->map.player_line++;
-			change_player_sprite(data, "./resources/images/link_front.xpm");
+			walk_down(data);
 		}
 		else if (data->score == data->map.collectable_count)
 		{
@@ -138,17 +123,12 @@ void	move_right(t_game *data)
 			[data->map.player_collum + 1] == 'C')
 				data->score++;
 			if (data->map.lines[data->map.player_line] \
-			[data->map.player_collum + 1] ==  'K')
+			[data->map.player_collum + 1] == 'K')
 			{
 				ft_printf("You died! :(\n");
 				close_game(data);
 			}
-			data->map.lines[data->map.player_line] \
-			[data->map.player_collum] = '0';
-			data->map.lines[data->map.player_line] \
-			[data->map.player_collum + 1] = 'P';
-			data->map.player_collum++;
-			change_player_sprite(data, "./resources/images/link_right.xpm");
+			walk_right(data);
 		}
 		else if (data->score == data->map.collectable_count)
 		{
