@@ -92,4 +92,4 @@ Project Link: [https://github.com/chrisdelmoro/so_long](https://github.com/chris
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[product-screenshot]: ../images/screenshot.png
+[product-screenshot]: https://github.com/chrisdelmoro/so_long/blob/main/resources/repo/game.gif
