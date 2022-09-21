@@ -3,7 +3,7 @@
 <!-- PROJECT SHIELDS -->
 <br/>
 <p align="center">
-    <img src="https://github.com/chrisdelmoro/so_long/resources/repo/so_longm.png" alt="Logo" width="150" height="150">
+    <img src="https://github.com/chrisdelmoro/so_long/blob/main/resources/repo/so_longm.png" alt="Logo" width="150" height="150">
 
   <p align="center">
     A C library, the first assignment from 42's cursus.
@@ -31,7 +31,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![so_long][product-screenshot]](https://github.com/chrisdelmoro/so_long/resources/repo/game.gif)
+[![so_long][product-screenshot]](https://github.com/chrisdelmoro/so_long/blob/main/resources/repo/game.gif)
 
 This project is a very small 2D game. Its purpose is to make the student work with textures, sprites, and some other very basic gameplay elements.
 The student has to develop a game that takes as map file as a parameter, validades it according to several prerequesites, and then render the map to allow the game to be played. The player then has to collect every collectable to be able to complete the game.
